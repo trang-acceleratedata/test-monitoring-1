@@ -56,6 +56,21 @@
         "jobType": "Pipeline"
       },
       "type": "fabricItemAction-v1"
+    },
+    {
+      "uniqueIdentifier": "a09a91d2-0389-4381-8c3d-2bc97f8347ed",
+      "payload": {
+        "name": "dbt_pipeline_failed",
+        "definition": {
+          "type": "Rule",
+          "instance": "{\"steps\":[{\"id\":\"84a09b56-55a3-48a1-8cf6-b4208da3bb54\",\"name\":\"FieldsDefaultsStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b1000001-0000-4000-8000-000000000004\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"}]},{\"id\":\"c75d831a-c0e9-417c-8e11-3141dd0245b2\",\"name\":\"EventDetectStep\",\"rows\":[{\"arguments\":[],\"kind\":\"OnEveryValue\",\"name\":\"OnEveryValue\"}]},{\"id\":\"708199c0-1abd-4360-8bce-bb3166938a8e\",\"name\":\"ActStep\",\"rows\":[{\"kind\":\"FabricItemInvocation\",\"name\":\"FabricItemBinding\",\"arguments\":[{\"__typename\":\"templateInstanceV2StringArg\",\"name\":\"fabricJobConnectionDocumentId\",\"type\":\"string\",\"value\":\"b1000001-0000-4000-8000-000000000003\"},{\"name\":\"parameters\",\"type\":\"array\",\"values\":[]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]},{\"name\":\"workspaceId\",\"type\":\"string\",\"value\":\"{{WORKSPACE_ID}}\"},{\"name\":\"itemId\",\"type\":\"string\",\"value\":\"{{DISPATCHER_PIPELINE_ID}}\"},{\"name\":\"itemType\",\"type\":\"string\",\"value\":\"Pipeline\"},{\"name\":\"jobType\",\"type\":\"string\",\"value\":\"Pipeline\"}]}]}],\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.4\"}",
+          "settings": {
+            "shouldRun": true,
+            "shouldApplyRuleOnUpdate": false
+          }
+        }
+      },
+      "type": "timeSeriesView-v1"
     }
   ]
 }
