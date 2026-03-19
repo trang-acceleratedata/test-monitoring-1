@@ -4,7 +4,7 @@
 
 | Source Table | Staging Model | Status | Notes |
 |-------------|---------------|--------|-------|
-| salesforce_User | stg_salesforce__user | ⏳ Pending | System users |
+| salesforce_User | stg_salesforce__user | ✅ Built | System users (no soft-delete) |
 | salesforce_UserRole | stg_salesforce__user_role | ⏳ Pending | Role hierarchy |
 | salesforce_Account | stg_salesforce__account | ⏳ Pending | Customer orgs (has soft-delete) |
 | salesforce_Contact | stg_salesforce__contact | ⏳ Pending | Individual contacts (has soft-delete) |
@@ -218,7 +218,7 @@ _To be populated after model generation_
 
 | Model | Compiled | Row Count Match | PK Tests Pass | Notes |
 |-------|----------|----------------|---------------|-------|
-| stg_salesforce__user | ⏳ | ⏳ | ⏳ | |
+| stg_salesforce__user | ✅ | ⏳ | ⏳ | Compiled successfully |
 | stg_salesforce__account | ⏳ | ⏳ | ⏳ | |
 | ... | ⏳ | ⏳ | ⏳ | |
 
@@ -230,3 +230,11 @@ _To be populated after model generation_
 - Established view materialization strategy
 - Documented column renaming and soft-delete filtering standards
 - Created source mapping with build status tracking
+
+### 2026-03-19 - First Model Built
+
+- ✅ Created `stg_salesforce__user.sql` - System users staging model
+- ✅ Created `__salesforce_sources.yml` - Source definitions for all 15 tables
+- ✅ Configured dbt project (`dbt_project.yml`, `profiles.yml`)
+- ✅ Model compiled successfully with dbt-sqlite adapter
+- Applied transformations: PascalCase→snake_case, boolean casting, metadata preservation
