@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: salesforce
+    description: Salesforce CRM data extracted via dlt pipeline
+    database: sales
+    schema: main
+    tables:
+      - name: salesforce_Campaign
+        description: Marketing campaigns from Salesforce
+        columns:
+          - name: Id
+            description: Unique identifier for the campaign
+            tests:
+              - not_null
+              - unique
+          - name: Name
+            description: Campaign name
+          - name: Type
+            description: Campaign type (e.g., Email, Webinar, Conference)
+          - name: Status
+            description: Campaign status (e.g., Planned, In Progress, Completed)
+          - name: StartDate
+            description: Campaign start date
+          - name: EndDate
+            description: Campaign end date
+          - name: IsActive
+            description: Whether the campaign is currently active (1 = true, 0 = false)
+          - name: OwnerId
+            description: ID of the user who owns this campaign
+          - name: CreatedDate
+            description: When the campaign record was created
+          - name: LastModifiedDate
+            description: When the campaign record was last modified
+          - name: IsDeleted
+            description: Soft delete flag (1 = deleted, 0 = active)
+          - name: _vd_extracted_at
+            description: Timestamp when the record was extracted by dlt
+          - name: _dlt_load_id
+            description: dlt load identifier for lineage tracking
+          - name: _dlt_id
+            description: dlt unique row identifier

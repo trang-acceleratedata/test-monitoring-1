@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_salesforce__campaign
+    description: >
+      Staging view of Salesforce Campaign data. 1:1 with source table,
+      with column renaming to snake_case and filtering of soft-deleted records.
+      Grain: One row per campaign.
+    columns:
+      - name: campaign_id
+        description: Unique identifier for the campaign (Salesforce Id)
+        tests:
+          - not_null
+          - unique
+      - name: campaign_name
+        description: Campaign name
+      - name: campaign_type
+        description: Campaign type (e.g., Email, Webinar, Conference)
+      - name: campaign_status
+        description: Campaign status (e.g., Planned, In Progress, Completed)
+      - name: start_date
+        description: Campaign start date
+      - name: end_date
+        description: Campaign end date
+      - name: is_active
+        description: Whether the campaign is currently active (1 = true, 0 = false)
+      - name: owner_id
+        description: ID of the user who owns this campaign
+      - name: created_at
+        description: When the campaign record was created in Salesforce
+      - name: last_modified_at
+        description: When the campaign record was last modified in Salesforce
+      - name: extracted_at
+        description: Timestamp when the record was extracted by dlt pipeline
+      - name: dlt_load_id
+        description: dlt load identifier for lineage tracking
+      - name: dlt_id
+        description: dlt unique row identifier
