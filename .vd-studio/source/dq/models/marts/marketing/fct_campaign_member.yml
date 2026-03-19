@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fct_campaign_member
+    description: >
+      Campaign membership fact table tracking who (leads or contacts) was added to which campaigns.
+      Grain: One row per campaign member.
+      Sources: stg_salesforce__campaign_member (primary).
+      Key transformation: member_type derived from whether lead_id or contact_id is populated.
+    columns:
+      - name: campaign_member_id
+        description: Primary key - unique identifier for the campaign member record
+        tests:
+          - not_null
+          - unique
+      - name: campaign_id
+        description: Foreign key to dim_campaign
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_campaign')
+              field: campaign_id
+      - name: lead_id
+        description: Foreign key to Lead (nullable if member is a Contact)
+      - name: contact_id
+        description: Foreign key to Contact (nullable if member is a Lead)
+      - name: member_type
+        description: >
+          Derived field indicating member type.
+          Calculated as: 'Lead' if lead_id is not null, 'Contact' if contact_id is not null, 'Unknown' otherwise.
+        tests:
+          - accepted_values:
+              values: ['Lead', 'Contact', 'Unknown']
+      - name: member_status
+        description: Member status (e.g., Sent, Responded)
+      - name: has_responded
+        description: Whether the member has responded to the campaign (1 = yes, 0 = no)
+      - name: member_added_at
+        description: When the member was added to the campaign
+      - name: last_modified_at
+        description: When the member record was last modified
+      - name: extracted_at
+        description: When the record was extracted by dlt pipeline

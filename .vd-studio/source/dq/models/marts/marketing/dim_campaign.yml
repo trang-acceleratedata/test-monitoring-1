@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_campaign
+    description: >
+      Campaign dimension table for slicing and dicing campaign analysis.
+      Grain: One row per campaign.
+      Source: Direct passthrough from stg_salesforce__campaign.
+    columns:
+      - name: campaign_id
+        description: Primary key - unique identifier for the campaign
+        tests:
+          - not_null
+          - unique
+      - name: campaign_name
+        description: Campaign name
+      - name: campaign_type
+        description: Campaign type (e.g., Email, Webinar, Conference)
+      - name: campaign_status
+        description: Campaign status (e.g., Planned, In Progress, Completed)
+      - name: start_date
+        description: Campaign start date
+      - name: end_date
+        description: Campaign end date
+      - name: is_active
+        description: Whether the campaign is currently active (1 = true, 0 = false)
+      - name: owner_id
+        description: ID of the user who owns this campaign
+      - name: created_at
+        description: When the campaign was created in Salesforce
+      - name: last_modified_at
+        description: When the campaign was last modified in Salesforce
+      - name: extracted_at
+        description: When the record was extracted by dlt pipeline
