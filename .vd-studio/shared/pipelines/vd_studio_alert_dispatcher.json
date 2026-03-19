@@ -1,0 +1,43 @@
+{
+  "properties": {
+    "description": "Alert dispatcher — forwards pipeline failure events to Studio webhook",
+    "activities": [
+      {
+        "name": "Post Alert to Studio",
+        "type": "WebActivity",
+        "dependsOn": [],
+        "policy": {
+          "retry": 2,
+          "retryIntervalInSeconds": 30,
+          "secureInput": true,
+          "secureOutput": false,
+          "timeout": "00:05:00"
+        },
+        "typeProperties": {
+          "relativeUrl": "/api/v1/alerts/process",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "value": "@pipeline().parameters.event_payload",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "{{CONNECTION_ID}}"
+        }
+      }
+    ],
+    "parameters": {
+      "event_payload": {
+        "type": "string",
+        "defaultValue": "{}"
+      },
+      "api_key": {
+        "type": "string",
+        "defaultValue": ""
+      }
+    }
+  }
+}
