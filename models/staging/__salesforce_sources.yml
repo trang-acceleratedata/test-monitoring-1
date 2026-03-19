@@ -1,0 +1,94 @@
+version: 2
+
+sources:
+  - name: salesforce
+    description: Salesforce CRM data via DLT pipeline
+    database: /home/trangtnt/vd-studio/data/sales.db
+    schema: main
+
+    tables:
+      - name: salesforce_User
+        description: Salesforce users (employees and system users)
+        identifier: salesforce_User
+        columns:
+          - name: Id
+            description: Unique user identifier
+            tests:
+              - not_null
+              - unique
+          - name: Username
+            description: User login name
+          - name: Email
+            description: User email address
+          - name: FirstName
+            description: User first name
+          - name: LastName
+            description: User last name
+          - name: IsActive
+            description: Whether user account is active
+          - name: CreatedDate
+            description: User creation timestamp
+          - name: LastModifiedDate
+            description: Last modification timestamp
+          - name: _vd_extracted_at
+            description: DLT extraction timestamp
+          - name: _dlt_load_id
+            description: DLT load batch identifier
+          - name: _dlt_id
+            description: DLT unique row identifier
+
+      - name: salesforce_UserRole
+        description: Salesforce user role hierarchy
+        identifier: salesforce_UserRole
+
+      - name: salesforce_Account
+        description: Customer and prospect organizations
+        identifier: salesforce_Account
+
+      - name: salesforce_Contact
+        description: Individual contacts
+        identifier: salesforce_Contact
+
+      - name: salesforce_Lead
+        description: Prospective customers
+        identifier: salesforce_Lead
+
+      - name: salesforce_Opportunity
+        description: Sales deals and opportunities
+        identifier: salesforce_Opportunity
+
+      - name: salesforce_OpportunityLineItem
+        description: Opportunity product line items
+        identifier: salesforce_OpportunityLineItem
+
+      - name: salesforce_OpportunityContactRole
+        description: Opportunity-Contact relationship mapping
+        identifier: salesforce_OpportunityContactRole
+
+      - name: salesforce_Campaign
+        description: Marketing campaigns
+        identifier: salesforce_Campaign
+
+      - name: salesforce_CampaignMember
+        description: Campaign participants (leads and contacts)
+        identifier: salesforce_CampaignMember
+
+      - name: salesforce_Product2
+        description: Products and services
+        identifier: salesforce_Product2
+
+      - name: salesforce_Pricebook2
+        description: Price books
+        identifier: salesforce_Pricebook2
+
+      - name: salesforce_PricebookEntry
+        description: Price book entries for products
+        identifier: salesforce_PricebookEntry
+
+      - name: salesforce_Task
+        description: Activities and tasks
+        identifier: salesforce_Task
+
+      - name: salesforce_Event
+        description: Calendar events
+        identifier: salesforce_Event

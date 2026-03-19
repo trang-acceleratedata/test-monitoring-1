@@ -1,0 +1,8 @@
+#!/home/trangtnt/vd-studio/tmp/clones/default/a9a87ca5-a648-4d06-a388-39263fc7014f/.venv_dbt/bin/python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from sqlparse.__main__ import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
