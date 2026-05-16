@@ -1,0 +1,8 @@
+{
+  "metadata": {
+    "dbt_version": "1.7.0",
+    "generated_at": "2026-05-17T00:00:00Z",
+    "invocation_id": "prod-build-seed-1"
+  },
+  "nodes": {}
+}
